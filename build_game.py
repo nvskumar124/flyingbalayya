@@ -1398,6 +1398,13 @@ loadImages(() => {
   modalCardImg.src = ASSETS.modal_card;
   gameLoop();
 });
+
+// Register Monetag Service Worker for verification and Multitag
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(function() {});
+  });
+}
 </script>
 </body>
 </html>
