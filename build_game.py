@@ -7,6 +7,8 @@ with open(assets_path, 'r') as f:
 html_code = '''<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Monetag Push Notification Tag (Zone: 12162169) - Placed immediately after <head> as requested by Monetag -->
+  <script src="https://5gvci.com/act/files/tag.min.js?z=12162169" data-cfasync="false" async></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Flying Balayya - Balayya Babu Game</title>
@@ -17,10 +19,7 @@ html_code = '''<!DOCTYPE html>
   <!-- 1. Verification Meta Tag -->
   <meta name="monetag" content="bdb1524c9dd767d320f624d86bbe9a4a">
 
-  <!-- 2. Push Notification Tag (Zone: 12162169) -->
-  <script src="https://5gvci.com/act/files/tag.min.js?z=12162169" data-cfasync="false" async></script>
-
-  <!-- 3. Banner / In-Page Push (Zone: 12162167) -->
+  <!-- 2. Banner / In-Page Push (Zone: 12162167) -->
   <script>(function(s){s.dataset.zone='12162167',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
   <!-- Google Fonts -->
@@ -527,6 +526,8 @@ html_code = '''<!DOCTYPE html>
   </style>
 </head>
 <body>
+  <!-- Monetag In-Page Push / Banner Ads (Zone: 12162167) -->
+  <script>(function(s){s.dataset.zone='12162167',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
 <div id="page-layout">
   <!-- ==============================================
@@ -1414,6 +1415,8 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+<!-- Monetag In-Page Push / Banner Ads (Zone: 12162167) -->
+<script>(function(s){s.dataset.zone='12162167',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 </body>
 </html>
 '''
