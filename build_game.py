@@ -12,9 +12,16 @@ html_code = '''<!DOCTYPE html>
   <title>Flying Balayya - Balayya Babu Game</title>
   
   <!-- ============================================================
-       MONETAG VERIFICATION META TAG
+       MONETAG INTEGRATION (NON-INTRUSIVE)
        ============================================================ -->
+  <!-- 1. Verification Meta Tag -->
   <meta name="monetag" content="bdb1524c9dd767d320f624d86bbe9a4a">
+
+  <!-- 2. Push Notification Tag (Zone: 12162169) -->
+  <script src="https://5gvci.com/act/files/tag.min.js?z=12162169" data-cfasync="false" async></script>
+
+  <!-- 3. Banner / In-Page Push (Zone: 12162167) -->
+  <script>(function(s){s.dataset.zone='12162167',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -139,6 +146,7 @@ html_code = '''<!DOCTYPE html>
     /* Main Game Container */
     #game-container {
       position: relative;
+      z-index: 20;
       width: 100%;
       max-width: 440px;
       height: 100%;
@@ -527,7 +535,7 @@ html_code = '''<!DOCTYPE html>
   <aside class="side-ad-panel" id="leftSideAd">
     <span class="side-ad-badge">Sponsored</span>
     
-    <a class="side-ad-content" id="leftAdLink" href="#" target="_blank" rel="noopener">
+    <a class="side-ad-content" id="leftAdLink" href="https://uplcm.com/4/12162165" target="_blank" rel="noopener">
       <div class="side-ad-icon">🦁</div>
       <div style="font-weight:bold; font-size:13px; color:#fff;">JAI BALAYYA</div>
       <div style="font-size:10px; color:#94a3b8;">Trending Mobile Games &amp; Entertainment</div>
@@ -621,7 +629,7 @@ html_code = '''<!DOCTYPE html>
   <aside class="side-ad-panel" id="rightSideAd">
     <span class="side-ad-badge">Sponsored</span>
     
-    <a class="side-ad-content" id="rightAdLink" href="#" target="_blank" rel="noopener">
+    <a class="side-ad-content" id="rightAdLink" href="https://uplcm.com/4/12162165" target="_blank" rel="noopener">
       <div class="side-ad-icon">⚡</div>
       <div style="font-weight:bold; font-size:13px; color:#fff;">HOT REWARDS</div>
       <div style="font-size:10px; color:#94a3b8;">Discover Top Deals &amp; Special Offers</div>
@@ -638,7 +646,7 @@ html_code = '''<!DOCTYPE html>
 // You can set your Monetag Direct Link URL for the side banners:
 // ============================================================
 const MONETAG_CONFIG = {
-  directLinkUrl: '' // e.g. 'https://otieuiano.com/4/xxxxxxx'
+  directLinkUrl: 'https://uplcm.com/4/12162165'
 };
 
 function handleSideAdClick(e) {
