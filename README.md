@@ -51,5 +51,11 @@ balgame/
 └── source_media/                # Original user-uploaded mp3s, video, and stills
 ```
 
+---
+
+## ⚖️ Disclaimer & Notice
+> **Important:** This project is created **strictly for entertainment and fan parody purposes only**. It is non-commercial and not intended to infringe upon any personal rights, intellectual property, or copyrights. If any content, audio track, or visual asset used herein violates any rights or policies, please contact us or raise a GitHub issue, and we will remove or replace it immediately upon notice.
+
 Jai Balayya! 🦁
+
 

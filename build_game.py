@@ -1,6 +1,6 @@
 import json, os
 
-assets_path = r'C:\Users\VINAY\Downloads\Create arcade shooter game_files\balayya_game_assets\assets_pro.json'
+assets_path = r'C:\Users\VINAY\Downloads\balgame\assets\assets_pro.json'
 with open(assets_path, 'r') as f:
     assets = json.load(f)
 
@@ -10,9 +10,17 @@ html_code = '''<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Flying Balayya - Balayya Babu Game</title>
+  
+  <!-- ============================================================
+       MONETAG VERIFICATION META TAG
+       ============================================================ -->
+  <meta name="monetag" content="bdb1524c9dd767d320f624d86bbe9a4a">
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Rubik+Mono+One&family=Teko:wght@700&family=Yatra+One&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --primary-gold: #fbbf24;
@@ -20,7 +28,7 @@ html_code = '''<!DOCTYPE html>
       --accent-red: #ef4444;
       --neon-cyan: #38bdf8;
       --bg-dark: #030712;
-      --card-bg: rgba(13, 20, 38, 0.92);
+      --card-bg: rgba(13, 20, 38, 0.94);
     }
     * {
       box-sizing: border-box;
@@ -41,6 +49,94 @@ html_code = '''<!DOCTYPE html>
       justify-content: center;
       align-items: center;
     }
+
+    /* Overall Layout: Left Side Ad + Game + Right Side Ad */
+    #page-layout {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 10px;
+      overflow: hidden;
+    }
+
+    /* SIDE AD PANELS (DESKTOP & TABLETS - ZERO GAMEPLAY INTERRUPTION) */
+    .side-ad-panel {
+      width: 160px;
+      height: 600px;
+      max-height: 90vh;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.92) 0%, rgba(10, 15, 30, 0.96) 100%);
+      border: 2px solid rgba(251, 191, 36, 0.35);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 8px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(251, 191, 36, 0.2);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .side-ad-badge {
+      font-size: 9px;
+      color: #94a3b8;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 3px 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .side-ad-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      text-align: center;
+      color: #ffd700;
+      font-size: 11px;
+      line-height: 1.4;
+      cursor: pointer;
+      text-decoration: none;
+      padding: 10px 4px;
+      width: 100%;
+      border-radius: 12px;
+      transition: all 0.2s;
+    }
+    .side-ad-content:hover {
+      background: rgba(251, 191, 36, 0.1);
+      transform: scale(1.02);
+    }
+    .side-ad-icon {
+      font-size: 38px;
+      filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.6));
+    }
+    .side-ad-cta {
+      background: linear-gradient(135deg, #f59e0b, #ea580c);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Hide side ads on mobile so game has 100% full screen */
+    @media (max-width: 820px) {
+      .side-ad-panel {
+        display: none !important;
+      }
+      #page-layout {
+        padding: 0;
+        gap: 0;
+      }
+    }
+
+    /* Main Game Container */
     #game-container {
       position: relative;
       width: 100%;
@@ -69,9 +165,9 @@ html_code = '''<!DOCTYPE html>
     /* Top Bar HUD */
     .top-bar {
       position: absolute;
-      top: 16px;
-      left: 16px;
-      right: 16px;
+      top: 14px;
+      left: 14px;
+      right: 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -101,15 +197,15 @@ html_code = '''<!DOCTYPE html>
       background: rgba(15, 23, 42, 0.75);
       border: 2px solid rgba(251, 191, 36, 0.4);
       backdrop-filter: blur(10px);
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 18px;
       transition: all 0.2s;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     }
@@ -125,13 +221,13 @@ html_code = '''<!DOCTYPE html>
     /* Subtitle banner for Audio 3 (Intro) */
     #introSubtitleBanner {
       position: absolute;
-      bottom: 80px;
-      left: 20px;
-      right: 20px;
+      bottom: 25px;
+      left: 16px;
+      right: 16px;
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 27, 75, 0.95));
       border: 2px solid rgba(251, 191, 36, 0.8);
-      border-radius: 16px;
-      padding: 12px 18px;
+      border-radius: 14px;
+      padding: 10px 16px;
       text-align: center;
       z-index: 25;
       box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
@@ -143,44 +239,38 @@ html_code = '''<!DOCTYPE html>
       to { transform: translateY(0); opacity: 1; }
     }
     .subtitle-speaker {
-      font-size: 11px;
+      font-size: 10px;
       color: #ffd700;
       letter-spacing: 1.5px;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
+      margin-bottom: 2px;
     }
     .subtitle-quote {
-      font-size: 13px;
       font-family: 'Teko', sans-serif;
-      font-size: 20px;
+      font-size: 18px;
       color: #ffffff;
       line-height: 1.1;
       letter-spacing: 1px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
 
-    /* Start Screen Overlay ("Enter the Game") */
+    /* Start Screen Overlay */
     #start-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(17, 24, 39, 0.85) 0%, rgba(3, 7, 18, 0.95) 100%);
+      background: radial-gradient(circle at center, rgba(17, 24, 39, 0.9) 0%, rgba(3, 7, 18, 0.97) 100%);
       backdrop-filter: blur(8px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 30;
-      gap: 20px;
+      gap: 14px;
       text-align: center;
-      padding: 24px;
+      padding: 18px;
     }
     .logo-badge {
       position: relative;
-      width: 110px;
-      height: 110px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       border: 3px solid #ffd700;
       box-shadow: 0 0 35px rgba(251, 191, 36, 0.8), inset 0 0 20px rgba(251, 191, 36, 0.5);
@@ -189,7 +279,7 @@ html_code = '''<!DOCTYPE html>
     }
     @keyframes floatBadge {
       0% { transform: translateY(0) rotate(-2deg); }
-      100% { transform: translateY(-10px) rotate(2deg); }
+      100% { transform: translateY(-8px) rotate(2deg); }
     }
     .logo-badge img {
       width: 100%;
@@ -198,7 +288,7 @@ html_code = '''<!DOCTYPE html>
     }
     .title-banner {
       font-family: 'Rubik Mono One', 'Bungee', sans-serif;
-      font-size: 34px;
+      font-size: 30px;
       line-height: 1.05;
       background: linear-gradient(180deg, #ffffff 0%, #ffd700 45%, #ea580c 100%);
       -webkit-background-clip: text;
@@ -209,19 +299,19 @@ html_code = '''<!DOCTYPE html>
     }
     .subtitle-telugu {
       font-family: 'Yatra One', cursive;
-      font-size: 22px;
+      font-size: 19px;
       color: #38bdf8;
       text-shadow: 0 0 15px rgba(56, 189, 248, 0.9);
-      margin-top: -6px;
+      margin-top: -4px;
     }
     .enter-game-btn {
       background: linear-gradient(135deg, #f59e0b 0%, #ea580c 50%, #b91c1c 100%);
       border: 2px solid #ffd700;
       color: #ffffff;
       font-family: 'Bungee', sans-serif;
-      font-size: 17px;
+      font-size: 15px;
       letter-spacing: 1.5px;
-      padding: 16px 36px;
+      padding: 14px 30px;
       border-radius: 30px;
       cursor: pointer;
       box-shadow: 0 0 30px rgba(245, 158, 11, 0.8), 0 8px 25px rgba(0, 0, 0, 0.5);
@@ -232,44 +322,58 @@ html_code = '''<!DOCTYPE html>
       0% { transform: scale(0.97); box-shadow: 0 0 20px rgba(245, 158, 11, 0.6); }
       100% { transform: scale(1.05); box-shadow: 0 0 40px rgba(251, 191, 36, 1), 0 0 15px #fff; }
     }
-    .enter-game-btn:hover {
-      transform: scale(1.08);
-    }
     .instructions-mini {
-      font-size: 12px;
+      font-size: 11px;
       color: #cbd5e1;
-      line-height: 1.6;
+      line-height: 1.4;
       background: rgba(15, 23, 42, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 14px;
-      padding: 10px 18px;
+      border-radius: 12px;
+      padding: 8px 14px;
       max-width: 290px;
     }
 
-    /* GAME OVER MODAL */
+    /* DISCLAIMER BANNER */
+    .disclaimer-banner {
+      font-family: sans-serif;
+      font-size: 9.5px;
+      line-height: 1.35;
+      color: #94a3b8;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 6px 10px;
+      max-width: 320px;
+      text-align: center;
+    }
+    .disclaimer-banner strong {
+      color: #ffd700;
+    }
+
+    /* GAME OVER MODAL (CLEAN & UNINTERRUPTED) */
     #gameover-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.82);
+      background: rgba(0, 0, 0, 0.84);
       backdrop-filter: blur(10px);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 50;
-      padding: 20px;
+      padding: 14px;
     }
     .modal-container {
       position: relative;
       width: 100%;
-      max-width: 300px;
-      background: linear-gradient(180deg, rgba(26, 32, 53, 0.96) 0%, rgba(11, 16, 29, 0.98) 100%);
+      max-width: 310px;
+      background: linear-gradient(180deg, rgba(26, 32, 53, 0.98) 0%, rgba(11, 16, 29, 0.99) 100%);
       border: 2px solid rgba(239, 68, 68, 0.6);
-      border-radius: 24px;
-      padding: 24px 20px 22px;
+      border-radius: 20px;
+      padding: 18px 16px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
       box-shadow: 0 0 50px rgba(239, 68, 68, 0.6), 0 0 90px rgba(245, 158, 11, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.25);
       animation: modalPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
@@ -279,7 +383,7 @@ html_code = '''<!DOCTYPE html>
     }
     .failed-title {
       font-family: 'Teko', sans-serif;
-      font-size: 46px;
+      font-size: 42px;
       line-height: 0.9;
       color: #ff3333;
       text-transform: uppercase;
@@ -288,22 +392,22 @@ html_code = '''<!DOCTYPE html>
     }
     .failed-dialogue {
       font-family: 'Yatra One', cursive;
-      font-size: 13.5px;
+      font-size: 13px;
       color: #fee2e2;
       text-align: center;
-      line-height: 1.4;
+      line-height: 1.35;
       background: rgba(239, 68, 68, 0.15);
-      padding: 8px 12px;
-      border-radius: 10px;
+      padding: 6px 10px;
+      border-radius: 8px;
       border: 1px solid rgba(239, 68, 68, 0.4);
     }
     .balayya-card-wrapper {
       position: relative;
       width: 254px;
-      height: 146px;
-      border-radius: 16px;
+      height: 142px;
+      border-radius: 14px;
       overflow: hidden;
-      border: 3px solid #ef4444;
+      border: 2.5px solid #ef4444;
       box-shadow: 0 0 35px rgba(239, 68, 68, 0.9), 0 0 15px rgba(251, 191, 36, 0.6);
       background: #000;
     }
@@ -316,11 +420,11 @@ html_code = '''<!DOCTYPE html>
     .score-summary-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
       width: 100%;
       background: rgba(10, 15, 26, 0.8);
-      border-radius: 14px;
-      padding: 10px 14px;
+      border-radius: 12px;
+      padding: 8px 12px;
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
     .score-item {
@@ -329,13 +433,13 @@ html_code = '''<!DOCTYPE html>
       align-items: center;
     }
     .score-item-label {
-      font-size: 10px;
+      font-size: 9px;
       color: #94a3b8;
       letter-spacing: 1px;
     }
     .score-item-value {
       font-family: 'Rubik Mono One', monospace;
-      font-size: 26px;
+      font-size: 24px;
       color: #38bdf8;
       text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
     }
@@ -343,15 +447,16 @@ html_code = '''<!DOCTYPE html>
       color: #ffd700;
       text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
     }
+
     .play-again-btn {
       width: 100%;
-      padding: 15px;
+      padding: 13px;
       background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
       border: none;
-      border-radius: 14px;
+      border-radius: 12px;
       color: #fff;
       font-family: 'Bungee', sans-serif;
-      font-size: 16px;
+      font-size: 15px;
       letter-spacing: 1.5px;
       cursor: pointer;
       box-shadow: 0 6px 25px rgba(37, 99, 235, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.4);
@@ -364,6 +469,13 @@ html_code = '''<!DOCTYPE html>
     }
     .play-again-btn:active {
       transform: translateY(1px);
+    }
+    .modal-disclaimer-note {
+      font-family: sans-serif;
+      font-size: 8px;
+      color: #64748b;
+      text-align: center;
+      line-height: 1.3;
     }
     /* Red screen flash on death */
     .red-flash {
@@ -408,75 +520,140 @@ html_code = '''<!DOCTYPE html>
 </head>
 <body>
 
-<div id="game-container">
-  <canvas id="gameCanvas"></canvas>
-  <div id="redFlash" class="red-flash"></div>
-
-  <!-- Top Bar HUD -->
-  <div class="top-bar">
-    <div class="hud-controls">
-      <button id="soundBtn" class="icon-btn" title="Toggle Sound">🔊</button>
-    </div>
-    <div id="scoreDisplay" class="score-display">0</div>
-    <div class="hud-controls">
-      <button id="skinBtn" class="icon-btn" title="Toggle Avatar Skin">🕶️</button>
-    </div>
-  </div>
-
-  <!-- Audio 3 Intro Subtitle Banner -->
-  <div id="introSubtitleBanner">
-    <div class="subtitle-speaker">🦁 NANDAMURI BALAKRISHNA</div>
-    <div class="subtitle-quote">"Don't trouble the trouble! If you trouble the trouble, trouble troubles you! I am not the trouble, I am the TRUTH!"</div>
-  </div>
-
-  <!-- Start Screen Overlay ("Enter the Game") -->
-  <div id="start-overlay">
-    <div class="logo-badge">
-      <img id="startBadgeImg" alt="Balayya Medallion">
-    </div>
-    <div>
-      <div class="title-banner">FLYING BALAYYA</div>
-      <div class="subtitle-telugu">బాలయ్య బాబు గేమ్</div>
-    </div>
+<div id="page-layout">
+  <!-- ==============================================
+       LEFT SIDE AD (160x600 Skyscraper - On sides only!)
+       ============================================== -->
+  <aside class="side-ad-panel" id="leftSideAd">
+    <span class="side-ad-badge">Sponsored</span>
     
-    <button id="enterGameBtn" class="enter-game-btn">🦁 ENTER THE GAME 🦁</button>
+    <a class="side-ad-content" id="leftAdLink" href="#" target="_blank" rel="noopener">
+      <div class="side-ad-icon">🦁</div>
+      <div style="font-weight:bold; font-size:13px; color:#fff;">JAI BALAYYA</div>
+      <div style="font-size:10px; color:#94a3b8;">Trending Mobile Games &amp; Entertainment</div>
+      <div class="side-ad-cta">EXPLORE NOW</div>
+    </a>
 
-    <div class="instructions-mini">
-      <p style="color:#ffd700; font-weight:bold; margin-bottom:4px;">🎮 HOW TO PLAY:</p>
-      <p>• <strong>TAP SCREEN / SPACEBAR</strong> to flap & fly</p>
-      <p>• Dodge the Mansion House Whiskey bottles!</p>
-      <p style="margin-top:4px; font-size:11px; color:#38bdf8;">🔊 3 Iconic Balayya audios embedded!</p>
+    <span style="font-size:8px; color:#64748b; letter-spacing:1px;">MONETAG ADS</span>
+  </aside>
+
+  <!-- ==============================================
+       MAIN GAME CONTAINER (Center - Completely Uninterrupted)
+       ============================================== -->
+  <main id="game-container">
+    <canvas id="gameCanvas"></canvas>
+    <div id="redFlash" class="red-flash"></div>
+
+    <!-- Top Bar HUD -->
+    <div class="top-bar">
+      <div class="hud-controls">
+        <button id="soundBtn" class="icon-btn" title="Toggle Sound">🔊</button>
+      </div>
+      <div id="scoreDisplay" class="score-display">0</div>
+      <div class="hud-controls">
+        <button id="skinBtn" class="icon-btn" title="Toggle Avatar Skin">🕶️</button>
+      </div>
     </div>
-  </div>
 
-  <!-- Game Over Modal (Exact match to viral video!) -->
-  <div id="gameover-overlay">
-    <div class="modal-container">
-      <div class="failed-title">YOU FAILED!</div>
-      <div class="failed-dialogue">Sorry, ఇలా మాట్లాడకూడదు...<br>ల*** కొడక గుద్దలూడదీసి కొడతా!</div>
+    <!-- Audio 3 Intro Subtitle Banner -->
+    <div id="introSubtitleBanner">
+      <div class="subtitle-speaker">🦁 NANDAMURI BALAKRISHNA</div>
+      <div class="subtitle-quote">"Don't trouble the trouble! If you trouble the trouble, trouble troubles you! I am not the trouble, I am the TRUTH!"</div>
+    </div>
+
+    <!-- Start Screen Overlay ("Enter the Game") -->
+    <div id="start-overlay">
+      <div class="logo-badge">
+        <img id="startBadgeImg" alt="Balayya Medallion">
+      </div>
+      <div>
+        <div class="title-banner">FLYING BALAYYA</div>
+        <div class="subtitle-telugu">బాలయ్య బాబు గేమ్</div>
+      </div>
       
-      <div class="balayya-card-wrapper">
-        <img id="modalCardImg" class="balayya-card-img" alt="Balayya Furious Warning">
+      <button id="enterGameBtn" class="enter-game-btn">🦁 ENTER THE GAME 🦁</button>
+
+      <div class="instructions-mini">
+        <p style="color:#ffd700; font-weight:bold; margin-bottom:2px;">🎮 HOW TO PLAY:</p>
+        <p>• <strong>TAP SCREEN / SPACEBAR</strong> to flap &amp; fly</p>
+        <p>• Dodge the Mansion House Whiskey bottles!</p>
       </div>
 
-      <div class="score-summary-grid">
-        <div class="score-item">
-          <span class="score-item-label">SCORE</span>
-          <span id="finalScore" class="score-item-value">0</span>
-        </div>
-        <div class="score-item">
-          <span class="score-item-label">BEST</span>
-          <span id="bestScore" class="score-item-value gold">0</span>
-        </div>
+      <!-- ENTERTAINMENT & REMOVAL DISCLAIMER -->
+      <div class="disclaimer-banner">
+        ⚠️ <strong>Notice:</strong> This game is created purely for entertainment &amp; fan-made parody purposes. We have immense respect for Nandamuri Balakrishna garu and all respective copyright holders. If any content violates any copyright or policy, please contact us and it will be removed immediately.
       </div>
-
-      <button id="playAgainBtn" class="play-again-btn">PLAY AGAIN</button>
     </div>
-  </div>
+
+    <!-- Game Over Modal (Clean, No annoying popups) -->
+    <div id="gameover-overlay">
+      <div class="modal-container">
+        <div class="failed-title">YOU FAILED!</div>
+        <div class="failed-dialogue">Sorry, ఇలా మాట్లాడకూడదు...<br>ల*** కొడక గుద్దలూడదీసి కొడతా!</div>
+        
+        <div class="balayya-card-wrapper">
+          <img id="modalCardImg" class="balayya-card-img" alt="Balayya Furious Warning">
+        </div>
+
+        <div class="score-summary-grid">
+          <div class="score-item">
+            <span class="score-item-label">SCORE</span>
+            <span id="finalScore" class="score-item-value">0</span>
+          </div>
+          <div class="score-item">
+            <span class="score-item-label">BEST</span>
+            <span id="bestScore" class="score-item-value gold">0</span>
+          </div>
+        </div>
+
+        <button id="playAgainBtn" class="play-again-btn">PLAY AGAIN</button>
+
+        <div class="modal-disclaimer-note">
+          Fan-made parody for entertainment purposes only. All copyrights belong to their respective owners.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==============================================
+       RIGHT SIDE AD (160x600 Skyscraper - On sides only!)
+       ============================================== -->
+  <aside class="side-ad-panel" id="rightSideAd">
+    <span class="side-ad-badge">Sponsored</span>
+    
+    <a class="side-ad-content" id="rightAdLink" href="#" target="_blank" rel="noopener">
+      <div class="side-ad-icon">⚡</div>
+      <div style="font-weight:bold; font-size:13px; color:#fff;">HOT REWARDS</div>
+      <div style="font-size:10px; color:#94a3b8;">Discover Top Deals &amp; Special Offers</div>
+      <div class="side-ad-cta">CHECK IT OUT</div>
+    </a>
+
+    <span style="font-size:8px; color:#64748b; letter-spacing:1px;">MONETAG ADS</span>
+  </aside>
 </div>
 
 <script>
-// --- EMBEDDED ASSETS (EXACTLY 3 USER AUDIOS) ---
+// ============================================================
+// MONETAG SIDE ADS CONFIGURATION
+// You can set your Monetag Direct Link URL for the side banners:
+// ============================================================
+const MONETAG_CONFIG = {
+  directLinkUrl: '' // e.g. 'https://otieuiano.com/4/xxxxxxx'
+};
+
+function handleSideAdClick(e) {
+  e.preventDefault();
+  if (MONETAG_CONFIG.directLinkUrl) {
+    window.open(MONETAG_CONFIG.directLinkUrl, '_blank');
+  } else {
+    window.open('https://api.whatsapp.com/send?text=Play%20the%20viral%20Flying%20Balayya%20Game!%20Jai%20Balayya!', '_blank');
+  }
+}
+
+document.getElementById('leftAdLink').addEventListener('click', handleSideAdClick);
+document.getElementById('rightAdLink').addEventListener('click', handleSideAdClick);
+
+// --- EMBEDDED ASSETS (STRICTLY 3 AUDIOS + HIGH RES GRAPHICS) ---
 const ASSETS = ''' + json.dumps(assets) + ''';
 
 // --- STRICT 3-AUDIO SYSTEM ---
@@ -657,7 +834,7 @@ const SPAWN_INTERVAL = 138;
 
 function spawnObstacle() {
   const minTop = 70;
-  const maxTop = height - GAP_SIZE - 130;
+  const maxTop = height - GAP_SIZE - 120;
   const topHeight = Math.floor(Math.random() * (maxTop - minTop)) + minTop;
 
   obstacles.push({
@@ -788,8 +965,8 @@ function drawBackground() {
   const light1Angle = Math.sin(t) * 0.35 - 0.2;
   const light2Angle = Math.cos(t * 0.9) * 0.35 + 0.2;
 
-  drawSearchlight(width * 0.25, height - 40, light1Angle, 'rgba(251, 191, 36, 0.12)');
-  drawSearchlight(width * 0.75, height - 40, light2Angle, 'rgba(56, 189, 248, 0.12)');
+  drawSearchlight(width * 0.25, height - 38, light1Angle, 'rgba(251, 191, 36, 0.12)');
+  drawSearchlight(width * 0.75, height - 38, light2Angle, 'rgba(56, 189, 248, 0.12)');
 
   // 4. Twinkling Stars
   stars.forEach(s => {
@@ -815,33 +992,33 @@ function drawBackground() {
     ctx.fill();
   });
 
-  // 6. City Skyline Silhouette (Hyderabad & Modern High-rises)
+  // 6. City Skyline Silhouette
   ctx.fillStyle = '#060d1f';
   const bldgWidth = 34;
   const numBldgs = Math.ceil(width / bldgWidth) + 1;
   for (let i = 0; i < numBldgs; i++) {
-    const h = ((i * 43) % 120) + 80;
+    const h = ((i * 43) % 110) + 75;
     ctx.fillRect(i * bldgWidth, height - h - 38, bldgWidth - 2, h);
 
     // Glowing Neon Windows
     ctx.fillStyle = (i % 2 === 0) ? 'rgba(251, 191, 36, 0.45)' : 'rgba(56, 189, 248, 0.45)';
     for (let r = 0; r < 5; r++) {
       if ((i + r) % 3 !== 0) {
-        ctx.fillRect(i * bldgWidth + 5, height - h - 28 + r * 16, 5, 7);
-        ctx.fillRect(i * bldgWidth + 18, height - h - 28 + r * 16, 5, 7);
+        ctx.fillRect(i * bldgWidth + 5, height - h - 28 + r * 15, 5, 6);
+        ctx.fillRect(i * bldgWidth + 18, height - h - 28 + r * 15, 5, 6);
       }
     }
-    // Red beacon light on high building antenna
+    // Red beacon light on antenna
     if (i % 3 === 0) {
       ctx.fillStyle = Math.sin(frameCount * 0.1 + i) > 0 ? '#ef4444' : '#7f1d1d';
       ctx.beginPath();
-      ctx.arc(i * bldgWidth + 15, height - h - 44, 2.5, 0, Math.PI * 2);
+      ctx.arc(i * bldgWidth + 15, height - h - 45, 2.5, 0, Math.PI * 2);
       ctx.fill();
       ctx.strokeStyle = '#334155';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(i * bldgWidth + 15, height - h - 38);
-      ctx.lineTo(i * bldgWidth + 15, height - h - 43);
+      ctx.lineTo(i * bldgWidth + 15, height - h - 44);
       ctx.stroke();
     }
     ctx.fillStyle = '#060d1f';
@@ -866,7 +1043,7 @@ function drawBackground() {
   // Scrolling Golden Mass Marquee
   ctx.font = '11px Bungee';
   ctx.fillStyle = 'rgba(251, 191, 36, 0.6)';
-  ctx.fillText('★ JAI BALAYYA ★ GOD OF MASSES ★ NANDAMURI BALAKRISHNA ★', ((frameCount * -1.8) % 380), height - 15);
+  ctx.fillText('★ JAI BALAYYA ★ GOD OF MASSES ★ NANDAMURI BALAKRISHNA ★', ((frameCount * -1.8) % 380), height - 14);
 }
 
 function drawSearchlight(x, y, angle, color) {
@@ -901,7 +1078,6 @@ function drawBottle(x, y, w, h, isInverted = false) {
   if (bottleImg && bottleImg.complete) {
     ctx.drawImage(bottleImg, -w / 2, -h / 2, w, h);
   } else {
-    // Fallback vector drawing if loading
     ctx.fillStyle = '#d97706';
     ctx.fillRect(-w/2, -h/2, w, h);
   }
@@ -1025,7 +1201,7 @@ function update() {
       player.rotation = Math.min(Math.PI / 2.7, player.rotation + 0.045);
     }
 
-    // Spawn Jet Flame Particles (Blue core + Gold outer)
+    // Spawn Jet Flame Particles
     player.jetParticles.push({
       x: player.x - Math.cos(player.rotation) * 16,
       y: player.y + player.size / 2 - 2,
@@ -1088,13 +1264,12 @@ function update() {
       return;
     }
   } else if (gameState === 'START' || gameState === 'HOVER') {
-    // Smooth hover animation
     player.y = height * 0.45 + Math.sin(frameCount * 0.07) * 9;
     player.rotation = Math.sin(frameCount * 0.05) * 0.08;
   }
 }
 
-// 1. WHEN DEATH
+// 1. WHEN DEATH (NO POPUPS / NO REDIRECTS)
 function triggerGameOver() {
   gameState = 'GAMEOVER';
   triggerScreenShake(16);
@@ -1164,7 +1339,8 @@ function handleUserAction(e) {
   if (e) {
     if (e.target.closest('.icon-btn') || 
         e.target.closest('.enter-game-btn') || 
-        e.target.closest('.play-again-btn')) {
+        e.target.closest('.play-again-btn') ||
+        e.target.closest('.side-ad-panel')) {
       return;
     }
   }
@@ -1174,7 +1350,6 @@ function handleUserAction(e) {
   } else if (gameState === 'PLAYING') {
     player.flap();
 
-    // If Audio 3 (intro) was playing and player flaps, start Audio 2 (gameplay song) seamlessly
     if (!audioManager.audioGameplay.paused) {
       // already playing
     } else if (audioManager.audioIntro.paused || audioManager.audioIntro.currentTime > 2.5) {
@@ -1228,20 +1403,20 @@ loadImages(() => {
 </html>
 '''
 
-# Write to Downloads folder:
-downloads_path = r'C:\Users\VINAY\Downloads\Flying_Balayya_Game.html'
-with open(downloads_path, 'w', encoding='utf-8') as f:
+# 1. Update balgame/index.html & Flying_Balayya_Game.html
+with open(r'C:\Users\VINAY\Downloads\balgame\index.html', 'w', encoding='utf-8') as f:
     f.write(html_code)
-print('Saved to:', downloads_path)
+with open(r'C:\Users\VINAY\Downloads\balgame\Flying_Balayya_Game.html', 'w', encoding='utf-8') as f:
+    f.write(html_code)
 
-# Also write to workspace index.html:
-workspace_index = r'C:\Users\VINAY\Downloads\Create arcade shooter game_files\index.html'
-with open(workspace_index, 'w', encoding='utf-8') as f:
+# 2. Update Downloads/Flying_Balayya_Game.html
+with open(r'C:\Users\VINAY\Downloads\Flying_Balayya_Game.html', 'w', encoding='utf-8') as f:
     f.write(html_code)
-print('Saved to:', workspace_index)
 
-# Also update runner.html:
-runner_path = r'C:\Users\VINAY\Downloads\Create arcade shooter game_files\runner.html'
-with open(runner_path, 'w', encoding='utf-8') as f:
+# 3. Update Create arcade shooter game_files
+with open(r'C:\Users\VINAY\Downloads\Create arcade shooter game_files\index.html', 'w', encoding='utf-8') as f:
     f.write(html_code)
-print('Saved to:', runner_path)
+with open(r'C:\Users\VINAY\Downloads\Create arcade shooter game_files\runner.html', 'w', encoding='utf-8') as f:
+    f.write(html_code)
+
+print('Updated with Disclaimer banner and side ads successfully!')
