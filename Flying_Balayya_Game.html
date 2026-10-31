@@ -115,14 +115,51 @@
       font-size: 38px;
       filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.6));
     }
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 6px 22px rgba(245, 158, 11, 0.8); }
+    }
     .side-ad-cta {
       background: linear-gradient(135deg, #f59e0b, #ea580c);
       color: #fff;
-      padding: 8px 12px;
+      padding: 9px 14px;
       border-radius: 20px;
-      font-size: 10px;
-      letter-spacing: 1px;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
       box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+      animation: pulseGlow 2.2s infinite ease-in-out;
+      transition: transform 0.15s;
+    }
+    .side-ad-cta:hover {
+      transform: scale(1.08);
+    }
+    @keyframes pulseBtn {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 18px rgba(16, 185, 129, 0.45); }
+      50% { transform: scale(1.02); box-shadow: 0 6px 26px rgba(16, 185, 129, 0.8); }
+    }
+    .revive-bonus-btn {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff !important;
+      font-family: 'Bungee', cursive, sans-serif;
+      font-size: 11px;
+      text-align: center;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      animation: pulseBtn 1.8s infinite ease-in-out;
+      transition: transform 0.15s;
+    }
+    .revive-bonus-btn:hover {
+      transform: scale(1.04);
+      background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
     }
 
     /* Hide side ads on mobile so game has 100% full screen */
@@ -528,16 +565,16 @@
        LEFT SIDE AD (160x600 Skyscraper - On sides only!)
        ============================================== -->
   <aside class="side-ad-panel" id="leftSideAd">
-    <span class="side-ad-badge">Sponsored</span>
+    <span class="side-ad-badge" style="background:linear-gradient(135deg, #ef4444, #dc2626); color:#fff; font-weight:bold; letter-spacing:1px;">🔥 FREE PACK</span>
     
     <a class="side-ad-content" id="leftAdLink" href="https://uplcm.com/4/12162165" target="_blank" rel="noopener">
       <div class="side-ad-icon">🦁</div>
-      <div style="font-weight:bold; font-size:13px; color:#fff;">JAI BALAYYA</div>
-      <div style="font-size:10px; color:#94a3b8;">Trending Mobile Games &amp; Entertainment</div>
-      <div class="side-ad-cta">EXPLORE NOW</div>
+      <div style="font-weight:900; font-size:14px; color:#fbbf24; text-shadow:0 0 10px rgba(251,191,36,0.6); letter-spacing:1px;">BALAYYA RINGTONES</div>
+      <div style="font-size:11px; color:#cbd5e1; line-height:1.4;">Download 30+ Viral Mass Dialogues, Uncut Roars &amp; BGM MP3s!</div>
+      <div class="side-ad-cta" style="background:linear-gradient(135deg, #f59e0b, #d97706);">DOWNLOAD MP3 📥</div>
     </a>
 
-    <span style="font-size:8px; color:#64748b; letter-spacing:1px;">MONETAG ADS</span>
+    <span style="font-size:8px; color:#64748b; letter-spacing:1px;">NBK EXCLUSIVE</span>
   </aside>
 
   <!-- ==============================================
@@ -611,6 +648,11 @@
 
         <button id="playAgainBtn" class="play-again-btn">PLAY AGAIN</button>
 
+        <!-- HIGH-CONVERTING BONUS BUTTON (WORKS ON BOTH MOBILE & DESKTOP) -->
+        <a href="https://uplcm.com/4/12162165" target="_blank" rel="noopener" class="revive-bonus-btn">
+          🎁 CLAIM FREE REWARD &amp; SKINS ⚡
+        </a>
+
         <div class="modal-disclaimer-note">
           Fan-made parody for entertainment purposes only. All copyrights belong to their respective owners.
         </div>
@@ -622,16 +664,16 @@
        RIGHT SIDE AD (160x600 Skyscraper - On sides only!)
        ============================================== -->
   <aside class="side-ad-panel" id="rightSideAd">
-    <span class="side-ad-badge">Sponsored</span>
+    <span class="side-ad-badge" style="background:linear-gradient(135deg, #3b82f6, #1d4ed8); color:#fff; font-weight:bold; letter-spacing:1px;">⭐ VIP UNLOCK</span>
     
     <a class="side-ad-content" id="rightAdLink" href="https://uplcm.com/4/12162165" target="_blank" rel="noopener">
-      <div class="side-ad-icon">⚡</div>
-      <div style="font-weight:bold; font-size:13px; color:#fff;">HOT REWARDS</div>
-      <div style="font-size:10px; color:#94a3b8;">Discover Top Deals &amp; Special Offers</div>
-      <div class="side-ad-cta">CHECK IT OUT</div>
+      <div class="side-ad-icon">👑</div>
+      <div style="font-weight:900; font-size:14px; color:#38bdf8; text-shadow:0 0 10px rgba(56,189,248,0.6); letter-spacing:1px;">SECRET GOD SKIN</div>
+      <div style="font-size:11px; color:#cbd5e1; line-height:1.4;">Unlock Legendary Daacu Maharaj &amp; Golden Lion Crown Avatar!</div>
+      <div class="side-ad-cta" style="background:linear-gradient(135deg, #0284c7, #0369a1);">UNLOCK SKIN ⚡</div>
     </a>
 
-    <span style="font-size:8px; color:#64748b; letter-spacing:1px;">MONETAG ADS</span>
+    <span style="font-size:8px; color:#64748b; letter-spacing:1px;">NBK EXCLUSIVE</span>
   </aside>
 </div>
 
