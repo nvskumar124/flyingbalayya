@@ -1,0 +1,5 @@
+# Ignore heavy raw video files to keep repo small & fast
+source_media/*.mp4
+.DS_Store
+Thumbs.db
+
